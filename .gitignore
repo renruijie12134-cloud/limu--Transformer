@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# 大文件（可选）
+data/*.zip
