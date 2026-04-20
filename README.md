@@ -1,14 +1,43 @@
-# -Transformer
-首先是学习了李沐老师在B站的《动手学深度学习课程》  
-随后参考李沐老师的Tranformer代码写了一份运行的Transformer代码  （noteboo文件夹里的jupyter代码）
-参考李李沐老师实现的部分：位置编码，多头注意力机制，缩放点积，编码器块的设计，解码器块的设计，编码器与解码器的设计   
-参考AI的部分(主要是Codex)：数据预处理流程（文本-->词元化-->批量数据），训练逻辑代码，预测逻辑代码，  
-程序运行过程中遇到了：传参问题，拼写问题，  
-程序运行成功后遇到了：  
-                    代码逻辑写错了，导致模型每次预测只输出结束字符"<eos>"---后来发先是我mask逻辑写错了  
-                    改正后，模型还是无法完翻译，这次它总是给我输出一堆标点符号----后来发现是我decoder逻辑写错了  
-目前代码可以正常运行，但是因为模型太小，数据量不够的问题，模型只具备生成文本的能力，但没有理解语义的能力，  
-所以测试时，我会给它与训练集相似的输入（在训练集的某一句英文的基础上加几个词，形成一句新的英文句子，把这个句子输给模型，让它做翻译），  
-它对于这种类型的句子翻译的不错  
-但是，如果输入一个它完全没看过的句子，它也可以翻译，但是我不保证他翻译的正确  
+# Transformer from Scratch (PyTorch)
 
+> 从零实现 Transformer（基于 PyTorch），深入理解 Attention、Mask 机制以及 Seq2Seq 训练与推理流程
+## 📖 项目简介
+本项目基于 PyTorch 从零实现 Transformer 模型，目标是深入理解其核心结构与训练机制，而非仅调用现成框架。
+在实现过程中，完整覆盖了 Transformer 的关键组件，包括：
+- 多头注意力机制（Multi-Head Attention）
+- 位置编码（Positional Encoding）
+- 前馈神经网络（FFN）
+- 残差连接与层归一化（Residual + LayerNorm）
+- 编码器-解码器结构（Encoder-Decoder）
+- Mask 机制（Padding Mask + Causal Mask）
+- 自回归推理（Inference）
+
+同时，项目在一个英法翻译（Seq2Seq）任务上完成训练与推理闭环，并对训练与推理不一致问题进行了详细调试与分析。  
+## ✨ 项目亮点
+- ✅ 从零实现 Transformer（无 d2l / huggingface 依赖）
+- ✅ 手动实现 Mask 机制（解决训练与推理不一致问题）
+- ✅ 完整实现 Seq2Seq 训练 + 自回归推理流程
+- ✅ 深入分析 KV Cache 与 causal mask 的作用
+- ✅ 通过过拟合小数据验证模型正确性（工程验证）
+- ✅ 系统调试并解决 Decoder 推理错误问题（核心难点）
+
+## 📂 项目结构
+.
+├── notebook/
+│   └── 手写transformer.ipynb   # 主实现代码（模型 + 训练 + 推理）
+├── images/                     # README 与 notebook 用图
+├── data/
+│   └── fra-eng.zip             # 英法翻译数据集
+├── README.md
+
+## ⚙️ 环境依赖
+
+- Python 3.9+
+- PyTorch 2.x
+- NumPy
+- Matplotlib（可选）
+
+安装依赖：
+
+```bash
+pip install torch numpy matplotlib
