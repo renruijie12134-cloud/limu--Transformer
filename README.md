@@ -41,3 +41,13 @@
 
 ```bash
 pip install torch numpy matplotlib
+
+## 🧪 实验结果
+在小规模数据上训练后，模型能够完成基本翻译任务：  
+Input:  i didn't know you had company .  
+Output: j'ignorais que tu avais de la compagnie .  
+但在未见数据上，模型存在语义偏移现象，说明：  
+- 数据规模不足
+- 词表覆盖有限
+- 模型容量受限
+## 🔮 后续工作
